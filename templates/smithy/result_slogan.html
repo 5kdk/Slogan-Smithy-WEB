@@ -1,0 +1,88 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .wrapper-slogans {
+    max-width: 1600px;
+    padding: 30px;
+    margin: 0 auto;
+  }
+
+  .wrapper-slogans>div {
+    padding: 5px;
+  }
+
+  .wrapper-slogans>div>ul {
+    display: flex;
+    background-color: #ddd;
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    list-style: none;
+  }
+
+  .wrapper-slogans>div>ul>li {
+    border-bottom: 1px dashed #555;
+  }
+</style>
+
+<div class="mainbox">
+  <form action="/smithy/result_slogan/" method="POST">
+    {% csrf_token %}
+    <div class="inputbox">
+      <select class="Inputbox__selectArea" name="select" id="select">
+        <option value="ko_slogan">Korean</option>
+        <option value="en_slogan">English</option>
+        <option value="model_slogan">Beta Korean</option>
+      </select>
+      <input type="text" name="info" class="inputbox__inputtext" placeholder="기업설명 혹은 제품설명을 간략히 적어주세요."
+        onclick="this.placeholder=''" onblur="this.placeholder='기업설명 혹은 제품설명을 간략히 적어주세요.'" />
+      <div class="inputbox__controlbox">
+        <div class="range">
+          <div class="sliderValue">
+            <span class="valueNumber">35</span>
+          </div>
+          <div class="field">
+            <div class="value left">1</div>
+            <input class="valueInput" type="range" name='sim' min="1" max="70" step="1" />
+            <div class="value right">70</div>
+          </div>
+        </div>
+      </div>
+      <input type="submit" class="Inputbox__submitArea" value="" />
+    </div>
+  </form>
+
+  <div class="wrapper-slogans">
+    {% if select == 'ko_slogan' %}
+    {% for list in slogans %}
+    <div>
+      <ul>
+        {% for slogan in list %}
+        <li><input type="checkbox" name="checkvalue" value="{{slogan}}" />{{ slogan }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+    {% else %}
+    {% for slogan in slogans %}
+    <div>
+      <ul>
+        <li><input type="checkbox" name="checkvalue" value="{{slogan}}" />{{ slogan }}</li>
+      </ul>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+  <div>
+    <center>
+      <input type="submit" />
+    </center>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+{% load static %}
+	<div class="a">
+		<h1>Result</h1>
+	</div>
+	
+	{% for slogan in slogans %}
+		<p>
+			{{ forloop.counter }}
+		</p>
+		<div style="position: relative;">
+
+			<img src= "{% static 'image/black2.jpg' %}" alt="배경" class="img-rounded">
+
+			<div style="left: 100px; width: 450px; bottom: 600px; font-size: 1.8em; color: yellow; font-weight: bold; position: absolute;">
+				{{ slogan }}
+			</div>
+			
+		</div>
+		
+	{% endfor %}
+
+	{%if posts.has_previous%}
+      <a href="?page=1">First</a>
+      <a href="?page={{posts.previous_page_number}}">Previous</a>
+      {%endif%}
+
+      <span>{{posts.number}}</span>
+      <span>of</span>
+      <span>{{posts.paginator.num_pages}}</span>
+
+      {%if posts.has_next%}
+      <a href="?page={{posts.next_page_number}}">Next</a>
+      <a href="?page={{posts.paginator.num_pages}}">Last</a>
+      {%endif%}
+
+{% endblock %}

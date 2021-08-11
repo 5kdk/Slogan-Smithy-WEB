@@ -1,0 +1,11 @@
+# Files
+*.pyc
+.env
+db.sqlite3
+secrets.json
+
+
+# Folder
+crawling_data/
+models/
+__pycache__/
