@@ -123,7 +123,7 @@ def koslogan(info):  # 여기에 사용자 인풋값 받게끔
         temperature=0.9,
         top_k=50,
         top_p=0.95,
-        num_samples=4,
+        num_samples=8,
     )
 
     slogans = []

@@ -18,12 +18,14 @@ secret_file = os.path.join(BASE_DIR, "secrets.json")
 with open(secret_file) as f:
     secrets = json.loads(f.read())
 
+
 def get_secret(setting, secrets=secrets):
     try:
         return secrets[setting]
     except KeyError:
         error_msg = f"Set the {setting} Environment variable"
         print(error_msg)
+
 
 PAPAGO_USER_ID = get_secret("PAPAGO_USER_ID")
 PAPAGO_SECRET_KEY = get_secret("PAPAGO_SECRET_KEY")
@@ -163,7 +165,7 @@ def enslogan(info):  # 여기에 사용자 인풋값 받게끔
         temperature=0.9,
         top_k=50,
         top_p=0.95,
-        num_samples=4,
+        num_samples=8,
     )
 
     slogans = []
