@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="mainbox__result">
-  <form action="/smithy/result_slogan/" method="POST">
+  <form action="/smithy/loading/" method="POST">
     {% csrf_token %}
     <div class="inputbox">
       <select class="Inputbox__selectArea" name="select" id="select" autofocus="{{ select }}">
@@ -41,7 +41,6 @@
   {% endfor %}
   {% else %}
   {% for slogan in slogans %}
-
   <div>
     <div class="wrapper_slogan__en">
       <div value="{{slogan}}" class="open">{{ slogan }}</div>

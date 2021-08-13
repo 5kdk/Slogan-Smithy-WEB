@@ -10,6 +10,8 @@ import math
 from operator import itemgetter
 from nltk.tokenize import word_tokenize
 
+# 모델 불러오기
+model = SentenceTransformer("distiluse-base-multilingual-cased-v1")
 
 # 데이터 전처리
 def process(info, sim):
@@ -19,7 +21,7 @@ def process(info, sim):
     eng_text = re.sub("[^a-zA-z]", " ", input_text).strip()
     # print(word_tokenize(input_text))
     # print(input_text_list)
-
+    
     kkma = Kkma()  # 꼬마를 작용시 분모가 중복 되는 경우가 생김, 이를 제거해야 함
     copy = []
     for txt in input_text_list:
@@ -60,7 +62,7 @@ def ko_api(text):
     r = requests.post(
         "https://train-8dgtlge21881yafjrqb4-gpt2-train-teachable-ainize.endpoint.ainize.ai/predictions/gpt-2-ko-small-finetune",  # 슬로건 , 없는 정제된 5에포크
         headers={"Content-Type": "application/json"},
-        data=json.dumps({"text": text, "num_samples": 50, "length": 20}),
+        data=json.dumps({"text": text, "num_samples": 75, "length": 20}),
     )
 
     # 슬로건 추가
@@ -101,8 +103,6 @@ def differ(slogan_list):
 
 # 문장 유사도
 def extraction(kor_list, sim):
-    # 모델 불러오기
-    model = SentenceTransformer("distiluse-base-multilingual-cased-v1")
 
     # 유사도 비교할 리스트
     corpus = kor_list

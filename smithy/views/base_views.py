@@ -7,6 +7,7 @@ from django.shortcuts import render
 from smithy.views.ko_slogan import process, ko_api, differ, extraction
 from smithy.views.en_slogan import enslogan
 from smithy.views.ko_model import koslogan
+
 # from django.core.paginator import Paginator
 
 # Create your views here.
@@ -24,6 +25,7 @@ def loading_view(request):
     request.session["info"] = request.POST.get("info", None)
     request.session["sim"] = request.POST.get("sim", None)
     return render(request, "smithy/loading.html")
+
 
 def result(request):
     select = request.session["select"]
@@ -44,4 +46,3 @@ def result(request):
         context = {"slogans": slogans, "select": select, "info": info, "sim": sim}
 
     return render(request, "smithy/result_slogan.html", context=context)
-
