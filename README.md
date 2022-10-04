@@ -1,4 +1,4 @@
-## Slogan-Smithy-Web
+## Slogan-Smithy-Web with Django
 ### gpt2, Kogpt2을 활용한 슬로건 생성 모델과 웹서비스 구현
 
 슬로건 스미시 프로젝트는 슬로건 데이터를 수집하여 정제하고, 사전 학습된 언어모델에 파인튜닝하여 프로토타입 웹까지 구현한 프로젝트로
